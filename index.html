@@ -2,7 +2,8 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <title>收款碼</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 自适应屏幕 -->
+    <title>收款码</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -10,6 +11,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
             background-color: #f5f5f5;
         }
         .container {
@@ -17,12 +19,37 @@
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 99%; /* 宽度占屏幕90% */
+            /*max-width: 600px;  限制最大宽度为600px */
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            margin: 10px 0;
+        }
+        .mobile-tip {
+            font-size: 1rem;
+            color: #888;
+            margin-top: 10px;
+            display: none; /* 默认隐藏提示 */
         }
         .code {
-            display: flex;
-            justify-content: space-around;
             margin: 20px 0;
+        }
+        .code img {
+            width: 70%; /* 图片宽度占满父容器 */
+            /* max-width: 400px; 限制图片最大宽度为400px */
+            height: auto; /* 保持图片比例 */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -31,10 +58,21 @@
         <h1>欢迎付款</h1>
         <p>请使用此二维码付款</p>
         <div class="code">
-            <img src="jz.png" alt="支付寶收款碼" style="width: 60%; height: auto;">
-            
+            <img src="jz.png" alt="支付寶收款碼">
         </div>
         <p>打开微信或支付宝后扫一扫</p>
+        <p class="mobile-tip">可长按二维码保存到相册</p> <!-- 手机用户提示 -->
     </div>
+    <script>
+        // 检测是否为移动设备
+        function isMobileDevice() {
+            return /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+        }
+
+        // 显示手机提示
+        if (isMobileDevice()) {
+            document.querySelector('.mobile-tip').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
